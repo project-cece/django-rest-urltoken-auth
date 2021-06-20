@@ -21,30 +21,6 @@ from django_rest_urltoken_auth.permissions import IsURLTokenAuthenticated, IsURL
 
 factory = APIRequestFactory()
 
-# class BasicModel(models.Model):
-#     text = models.CharField(
-#         max_length=100,
-#         verbose_name="Text comes here",
-#         help_text="Text description."
-#     )
-
-#     class Meta:
-#         app_label = 'tests'
-#         abstract = True
-
-# class BasicSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = BasicModel
-#         fields = '__all__'
-
-# class RootView(generics.ListCreateAPIView):
-#     queryset = BasicModel.objects.all()
-#     serializer_class = BasicSerializer
-#     authentication_classes = [authentication.BasicAuthentication]
-#     permission_classes = [permissions.DjangoModelPermissions]
-
-# root_view = RootView.as_view()
-
 # Objects to be used instead of model objects in tests
 class TestObject(object):
     def __init__(self, **kwargs):
@@ -73,13 +49,7 @@ class TestObjectViewSet(viewsets.ViewSet):
 
 root_view = TestObjectViewSet.as_view({'get': 'list'})
 
-# # Add test views to router
-# router = routers.DefaultRouter()
-# router.register("testobject", TestObjectViewSet, basename="testobject")
-
-# urlpatterns = router.urls
-
-# Create your tests here.
+# Tests
 class URLTokenAuthTests(APITestCase):
 
     def setUp(self):
@@ -97,8 +67,6 @@ class URLTokenAuthTests(APITestCase):
         request = factory.get('/?token={0}'.format(self.valid_token.token), format='json')
         response = root_view(request)
 
-        print(response)
-        print(response.data)
         self.assertEqual(response.status_code, 200)
         self.assertTrue(False)
 
@@ -108,6 +76,4 @@ class URLTokenAuthTests(APITestCase):
         response = root_view(request)
 
         self.assertEqual(response.status_code, 401)
-        print(response)
-        print(response.data)
         self.assertTrue(False)

@@ -57,7 +57,7 @@ class IsURLTokenAuthenticated(permissions.BasePermission):
 class IsURLTokenAuthenticatedOrAdmin(IsURLTokenAuthenticated):
     """
     Allows access only for valid URLTokens given in token 
-    url parameter
+    url parameter and logged in admin users
     """
 
     def has_permission(self, request, view):
