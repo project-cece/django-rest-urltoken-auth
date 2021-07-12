@@ -1,7 +1,7 @@
 ## Django REST URL Token Authentication
 
 Simple extension for Django REST Framework to allow for simple url token authentication. Adds
-an authentication option for passing a token key as an url parameter: `?token=sometoken` and
+an authentication option for passing a token key as a url parameter: `?token=sometoken` and
 allows for managing tokens through the admin (similar to Tastypie).
 
 This could be useful for example when needing to share some data through a simple API with an 
@@ -12,18 +12,23 @@ allow url token authentication for all requests.
 
 ### Installation
 
+1. Install 
 
-1. Add "django_rest_urltoken_auth" to your INSTALLED_APPS setting like this::
-	
+	```bash
+	pip install django-rest-urltoken-auth
 	```
+
+3. Add "django_rest_urltoken_auth" to your INSTALLED_APPS settings:
+	
+	```python
+	# settings.py
+	
     INSTALLED_APPS = [
         ...
         'django_rest_urltoken_auth',
     ]
     ```
-
-2. Run ``python manage.py migrate`` to create the apps models.
-
+    
 ### Quick start
 
 - Create URL API tokens in the admin: `/admin/django_rest_urltoken_auth/urltokens/`
